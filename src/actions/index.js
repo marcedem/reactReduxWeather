@@ -8,7 +8,7 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
 
 export function fetchWeather(city){
     
-    const url = `${ROOT_URL}&q=${city},at`;
+    const url = `${ROOT_URL}&units=metric&q=${city},fr`;
     const request = axios.get(url);  //axios is responsible for ajax request
 
     //console.log('Request: ', request); 
