@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
     constructor(props){
         super(props);
 
@@ -9,6 +12,7 @@ export default class SearchBar extends Component {
         // this is a way to bypass the "THIS" related bug on setState.
         // basically we are overriding the onInputChange method
         this.onInputChange = this.onInputChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     onInputChange(event){
@@ -21,8 +25,9 @@ export default class SearchBar extends Component {
         // prevent browser to submit by default
         event.preventDefault();
 
-        // weather API KEY: f7e0de7e479713428584bb036d708e5a
-
+        // We need to go and fetch weather data
+        this.props.fetchWeather(this.state.term);
+        this.setState({term: ''});
     }
 
     render() {
@@ -41,3 +46,11 @@ export default class SearchBar extends Component {
         );
     }
 }
+
+// bind action creator with dispath make sure that action flow down to the reducers and the middlewares
+function mapDispatchToProps(dispatch){
+    // we are calling action here with fetchWeather
+    return bindActionCreators({fetchWeather}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);

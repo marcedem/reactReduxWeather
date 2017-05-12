@@ -3,8 +3,10 @@
 Developing a weather forecast app with React-Redux
 
 ### Getting Started
-
 There are two methods for getting started with this repo.
+
+### How does middlewares work?
+Middleware works like gatekeepers.
 
 #### Familiar with Git?
 Checkout this repo, install dependencies, then start the gulp process with the following:
